@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Employee Form</title>
+  <style>
+    body {
+      background: #f8f8f8;
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      max-width: 550px;
+      margin: 32px auto;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 7px;
+      padding: 26px 22px 16px 22px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    }
+    fieldset {
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-bottom: 18px;
+      padding: 10px 12px 8px 12px;
+    }
+    legend {
+      font-weight: bold;
+      font-size: 1.08em;
+      padding: 0 8px;
+    }
+    .form-row {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 10px;
+    }
+    .form-label {
+      width: 140px;
+      min-width: 120px;
+      font-size: 15px;
+      color: #222;
+      margin-right: 8px;
+      text-align: left;
+      padding-top: 4px;
+    }
+    .form-input {
+      flex: 1 1 0;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="datetime-local"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 6px 8px;
+      border: 1px solid #bbb;
+      border-radius: 3px;
+      font-size: 15px;
+      box-sizing: border-box;
+      background: #fff;
+    }
+    input[readonly], input[disabled] {
+      background: #f3f3f3;
+      color: #888;
+      cursor: not-allowed;
+    }
+    textarea {
+      min-height: 68px;
+      resize: vertical;
+    }
+    /* Dạng cột cho radio-group của Gender & Preferred Shift */
+    .radio-group.column {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      font-size: 15px;
+    }
+    .radio-group,
+    .checkbox-group {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 15px;
+    }
+    .toolbar {
+      background: #f3f3f3;
+      border: 1px solid #ccc;
+      border-bottom: none;
+      padding: 5px 0 5px 5px;
+      margin-bottom: 0;
+      border-radius: 3px 3px 0 0;
+      display: flex;
+      gap: 6px;
+      font-size: 16px;
+    }
+    .toolbar button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 15px;
+      padding: 2px 6px;
+      color: #444;
+    }
+    .captcha-box {
+      font-family: monospace;
+      font-size: 2em;
+      letter-spacing: 4px;
+      background: #f3f3f3;
+      padding: 6px 18px;
+      border: 1px solid #ccc;
+      display: inline-block;
+      margin-bottom: 4px;
+      margin-top: 2px;
+    }
+    .action-buttons {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    button[type="submit"], button[type="reset"] {
+      padding: 7px 20px;
+      border: none;
+      border-radius: 3px;
+      background: #1976d2;
+      color: #fff;
+      font-size: 15px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    button[type="reset"] {
+      background: #888;
+    }
+    button[type="submit"]:hover {
+      background: #1259a7;
+    }
+    button[type="reset"]:hover {
+      background: #555;
+    }
+    .required {
+      color: #d32f2f;
+      margin-left: 2px;
+    }
+    .note {
+      font-size: 13px;
+      color: #888;
+      margin-top: 3px;
+    }
+    @media (max-width: 600px) {
+      .container {
+        min-width: unset;
+        width: 98vw;
+        padding: 12px 4vw;
+      }
+      .form-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .form-label {
+        width: 100%;
+        margin-bottom: 2px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <form>
+      <fieldset>
+        <legend>Basic Info</legend>
+        <div class="form-row">
+          <div class="form-label">Employee ID</div>
+          <div class="form-input"><input type="text" name="employee_id" value="9" readonly></div>
+        </div>
+        <div class="form-row">
+          <div class="form-label">Last Name</div>
+          <div class="form-input"><input type="text" name="last_name" value="Dodsworth" readonly></div>
+        </div>
+        <div class="form-row">
+          <div class="form-label">First Name</div>
+          <div class="form-input"><input type="text" name="first_name" value="Anne" required></div>
+        </div>
+        <div class="form-row">
+          <div class="form-label">Gender</div>
+          <div class="form-input radio-group column">
+            <label><input type="radio" name="gender" value="male" disabled> Male</label>
+            <label><input type="radio" name="gender" value="female" checked disabled> Female</label>
+            <label><input type="radio" name="gender" value="xxx" disabled> XXX</label>
+            <label><input type="radio" name="gender" value="zzz" disabled> ZZZ</label>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-label">Title</div>
+          <div class="form-input"><input type="text" name="title" value="Sales Representative"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-label">Suffix</div>
+          <div class="form-input"><input type="text" name="suffix" value="Ms."></div>
+        </div>
+        <div class="form-row">
+          <div class="form-label">BirthDate</div>
+          <div class="form-input"><input type="datetime-local" name="birthdate" value="1969-07-02T00:00:00"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-label">HireDate</div>
+          <div class="form-input"><input type="datetime-local" name="hiredate" value="1994-11-15T00:00:00"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-label">SSN (if applicable)</div>
+          <div class="form-input"><input type="text" name="ssn"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-label">Reports To</div>
+          <div class="form-input">
+            <select name="reports_to">
+              <option value="buchanan">Buchanan</option>
+            </select>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Contact info</legend>
+        <div class="form-row">
+          <div class="form-label">Email</div>
+          <div class="form-input"><input type="email" name="email" placeholder="name@example.com"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-label">Address</div>
+          <div class="form-input"><input type="text" name="address" value="7 Houndstooth Rd."></div>
+        </div>
+        <div class="form-row">
+          <div class="form-label">City</div>
+          <div class="form-input"><input type="text" name="city" value="London"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-label">Region</div>
+          <div class="form-input"><input type="text" name="region"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-label">Postal Code</div>
+          <div class="form-input"><input type="text" name="postal_code" value="WG2 7LT"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-label">Country</div>
+          <div class="form-input">
+            <select name="country">
+              <option value="russian_federation">Russian Federation</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-label">US Home Phone</div>
+          <div class="form-input"><input type="text" name="us_home_phone" value="(234)234-2342"></div>
+        </div>
+        <div class="form-row">
+          <div class="form-label">Photo</div>
+          <div class="form-input"><input type="text" name="photo" value="EmpID9.bmp"></div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Optional Info</legend>
+        <div class="form-row" style="align-items: flex-start;">
+          <div class="form-label" style="padding-top:8px;">Notes:</div>
+          <div class="form-input" style="width:100%;">
+            <div class="toolbar">
+              <button type="button" title="Bold"><b>B</b></button>
+              <button type="button" title="Italic"><i>I</i></button>
+              <button type="button" title="Underline"><u>U</u></button>
+              <button type="button" title="Strikethrough"><s>S</s></button>
+              <button type="button" title="Bullet List">&#8226; List</button>
+              <button type="button" title="Numbered List">1. List</button>
+              <button type="button" title="Link">&#128279;</button>
+              <button type="button" title="Image">&#128247;</button>
+              <button type="button" title="Font Color" style="color:#c00;">A</button>
+              <button type="button" title="Background Color" style="background:#ff0;">A</button>
+            </div>
+            <textarea name="notes" rows="4">Anne has a BA degree in English from St. Lawrence College. She is fluent in French and German.ZZZ.</textarea>
+          </div>
+        </div>
+      </fieldset>
+
+      <div class="form-row">
+        <div class="form-label">Preferred Shift</div>
+        <div class="form-input radio-group column">
+          <label><input type="radio" name="shift" value="regular" checked disabled> Regular</label>
+          <label><input type="radio" name="shift" value="gravy_yard" disabled> Gravy Yard</label>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-label">Active?</div>
+        <div class="form-input checkbox-group">
+          <input type="checkbox" name="active" checked>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-label">Are you human?</div>
+        <div class="form-input" style="display:flex;align-items:center;gap:8px;flex-direction:column;align-items:flex-start;">
+          <div class="captcha-box">TIDAWO</div>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <input type="text" name="captcha" style="width:130px;">
+            <button type="button">Click to change</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="action-buttons">
+        <button type="submit">Submit</button>
+        <button type="reset">Cancel</button>
+      </div>
+      <div class="note">
+        * required
+      </div>
+    </form>
+  </div>
+</body>
+</html>
